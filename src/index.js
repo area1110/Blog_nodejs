@@ -12,6 +12,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // HTTP logger
 app.use(morgan('combined'));
 
+// Use Middleware
+app.use(express.urlencoded({
+  extended : true
+}));
+app.use(express.json());
+
 // Template engine:
 app.engine('hbs', handlebars({
   extname: '.hbs',
@@ -26,6 +32,13 @@ app.get('/', (req, res) => {
 });
 app.get('/news', (req, res) => {
   res.render('news');
+});
+app.get('/search', (req, res) => {
+  res.render('search');
+});
+app.post('/search', (req, res) => {
+  console.log(req.body.q);
+  res.send(req.body.q);
 });
 
 app.listen(port, () => {

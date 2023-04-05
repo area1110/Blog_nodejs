@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 class SiteController {
   /** [GET] / */
   index(req, res) {
@@ -11,8 +9,8 @@ class SiteController {
     res.render("search");
   }
 
+  /** [POST] /search */
   searchPost(req, res) {
-    console.log(req.body.q);
     res.render('search_result', {query: req.body.q})
   }
 }
